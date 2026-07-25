@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, j, bt[10], p[10], pr[10], wt = 0, tat;
+
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++) {
+        p[i] = i + 1;
+        printf("Burst Time & Priority of P%d: ", p[i]);
+        scanf("%d%d", &bt[i], &pr[i]);
+    }
+
+    // Sort by highest priority
+    for(i = 0; i < n - 1; i++)
+        for(j = i + 1; j < n; j++)
+            if(pr[i] < pr[j]) {
+                int t;
+                t = pr[i]; pr[i] = pr[j]; pr[j] = t;
+                t = bt[i]; bt[i] = bt[j]; bt[j] = t;
+                t = p[i];  p[i] = p[j];  p[j] = t;
+            }
+
+    printf("\nProcess\tWT\tTAT\n");
+
+    wt = 0;
+    for(i = 0; i < n; i++) {
+        tat = wt + bt[i];
+        printf("P%d\t%d\t%d\n", p[i], wt, tat);
+        wt += bt[i];
+    }
+
+    return 0;
+}
+
+OUTPUT:
+Enter number of processes: 3
+Burst Time & Priority of P1: 5 2
+Burst Time & Priority of P2: 3 4
+Burst Time & Priority of P3: 4 1
+
+Process	WT	TAT
+P2	0	3
+P1	3	8
+P3	8	12
+
+
+=== Code Execution Successful ===
