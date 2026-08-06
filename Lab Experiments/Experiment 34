@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, r;
+
+    printf("Enter number of records: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter records:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    printf("Enter record to access: ");
+    scanf("%d", &r);
+
+    printf("Sequential Access:\n");
+    for(i = 0; i < r; i++)
+        printf("%d ", a[i]);
+
+    return 0;
+}
+
+OUTPUT:
+Enter number of records: 5
+Enter records:
+10 20 30 40 50
+Enter record to access: 4
+Sequential Access:
+10 20 30 40 
+
+=== Code Execution Successful ===
