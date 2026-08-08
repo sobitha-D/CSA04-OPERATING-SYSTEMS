@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<pthread.h>
+#include<semaphore.h>
+
+int data=10;
+sem_t s;
+
+void *reader(void *x){
+    sem_wait(&s);
+    printf("Read: %d\n",data);
+    sem_post(&s);
+}
+
+void *writer(void *x){
+    sem_wait(&s);
+    data++;
+    printf("Write: %d\n",data);
+    sem_post(&s);
+}
+
+int main(){
+    pthread_t r,w;
+    sem_init(&s,0,1);
+    pthread_create(&r,0,reader,0);
+    pthread_create(&w,0,writer,0);
+    pthread_join(r,0);
+    pthread_join(w,0);
+}
+
+OUTPUT:
+Read: 10
+Write: 11
+
+
+=== Code Execution Successful ===
