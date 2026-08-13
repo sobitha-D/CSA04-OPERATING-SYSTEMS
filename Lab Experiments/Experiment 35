@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int index[10], n, i, b;
+
+    printf("Enter number of blocks: ");
+    scanf("%d", &n);
+
+    printf("Enter block numbers:\n");
+    for(i = 0; i < n; i++)
+        scanf("%d", &index[i]);
+
+    printf("Enter block to access: ");
+    scanf("%d", &b);
+
+    for(i = 0; i < n; i++) {
+        if(index[i] == b) {
+            printf("Block %d found at index %d", b, i);
+            return 0;
+        }
+    }
+
+    printf("Block not found");
+    return 0;
+}
+
+OUTPUT:
+Enter number of blocks: 4
+Enter block numbers:
+5 8 12 15
+Enter block to access: 12
+Block 12 found at index 2
+
+=== Code Execution Successful ===
